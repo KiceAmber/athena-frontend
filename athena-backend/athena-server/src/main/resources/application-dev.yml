@@ -1,0 +1,13 @@
+# 开发环境下的配置文件
+athena:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: athena
+    username: root
+    password: 123456
+#  security:
+#    user:
+#      name: tom
+#      password: 123456

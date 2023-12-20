@@ -1,0 +1,34 @@
+server:
+  port: 3939
+spring:
+  profiles:
+    active: dev
+  datasource:
+    druid:
+      driver-class-name: ${athena.datasource.driver-class-name}
+      url: jdbc:mysql://${athena.datasource.host}:${athena.datasource.port}/${athena.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${athena.datasource.username}
+      password: ${athena.datasource.password}
+  # SpringSecurity 配置
+#  security:
+#    user:
+#      name: ${athena.security.user.name}
+#      password: ${athena.security.user.password}
+
+# mybatis 配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.athena.entity
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+
+# JWT 属性配置
+athena:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    secret-key: Athena-Blog-xsiw23424alri12n3ujj3o21n
+    # 设置jwt过期时间
+    ttl: 720000
+    # 设置前端传递过来的令牌名称
+    token-name: token
