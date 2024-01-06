@@ -1,7 +1,8 @@
 package main
 
-import "fmt"
+import "athena/internal"
 
 func main() {
-	fmt.Println("Hello, Athena")
+	// 启动项目
+	internal.Launch()
 }
