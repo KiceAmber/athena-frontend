@@ -1,0 +1,6 @@
+**/.idea
+**/logs
+**/node_modules
+**/.vscode
+**/target
+**/out
