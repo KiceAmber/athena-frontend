@@ -1,1 +1,1 @@
-# athena 博客后台管理页面
+# Vue3 + Typescript + Vite 的模板项目
