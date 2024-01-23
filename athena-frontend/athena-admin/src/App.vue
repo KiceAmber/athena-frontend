@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import Topbar from './components/Topbar.vue'
 import Sidebar from "@/components/Sidebar.vue";
-
 </script>
 
 <template>
-    <div>
-        <h1>This is a test text</h1>
-        <Topbar />
-		<Sidebar></Sidebar>
-    </div>
+    <el-container>
+        <el-aside width="200px">
+            <Sidebar />
+        </el-aside>
+        <el-container>
+            <el-header>
+                <Topbar />
+            </el-header>
+            <el-main>
+                <router-view />
+            </el-main>
+        </el-container>
+    </el-container>
 </template>
 
-<style scoped></style>
+<style lang="scss"></style>

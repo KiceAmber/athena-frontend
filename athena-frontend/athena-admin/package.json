@@ -4,12 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --open",
+    "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "fix": "prettier --write ./src/App.vue"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
     "@vitejs/plugin-vue": "^4.5.1",
     "element-plus": "^2.4.3",
     "path": "^0.12.7",
