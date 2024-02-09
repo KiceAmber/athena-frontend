@@ -1,22 +1,24 @@
 <script setup lang="ts">
-import Topbar from './components/Topbar.vue'
-import Sidebar from "@/components/Sidebar.vue";
+import Topbar from '@/layout/components/Topbar.vue'
+import Sidebar from "@/layout/components/Sidebar.vue";
 </script>
 
 <template>
     <el-container>
         <el-aside width="200px">
-            <Sidebar />
+            <Sidebar/>
         </el-aside>
         <el-container>
             <el-header>
-                <Topbar />
+                <Topbar/>
             </el-header>
             <el-main>
-                <router-view />
+                <router-view/>
             </el-main>
         </el-container>
     </el-container>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+
+</style>

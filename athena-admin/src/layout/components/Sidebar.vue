@@ -3,34 +3,47 @@ import {Files, CollectionTag} from "@element-plus/icons-vue"
 </script>
 
 <template>
-    <el-menu class="el-menu-vertical-demo" text-color="#fff" background-color="#191A23" active-text-color="#ffd04b"
-             router>
-        <el-sub-menu>
-            <template #title>
+    <div class="container">
+        <el-menu
+            class="el-menu-vertical-demo"
+            text-color="#000"
+            background-color="#fff"
+            active-text-color="#ffd04b"
+            router
+        >
+            <el-sub-menu>
+                <template #title>
+                    <el-icon>
+                        <Files/>
+                    </el-icon>
+                    <span>内容管理</span>
+                </template>
+                <el-menu-item index="/article/list">
+                    文章列表
+                </el-menu-item>
+                <el-menu-item index="/article/add">
+                    创作文章
+                </el-menu-item>
+            </el-sub-menu>
+            <el-menu-item index="/tag/list">
                 <el-icon>
-                    <Files/>
+                    <CollectionTag/>
                 </el-icon>
-                <span>文章管理</span>
-            </template>
-            <el-menu-item index="/article/list">
-                文章列表
+                <template #title>标签管理</template>
             </el-menu-item>
-            <el-menu-item index="/article/add">
-                创作文章
-            </el-menu-item>
-        </el-sub-menu>
-        <el-menu-item index="/tag/list">
-            <el-icon>
-                <CollectionTag/>
-            </el-icon>
-            <template #title>标签管理</template>
-        </el-menu-item>
-    </el-menu>
+        </el-menu>
+    </div>
 </template>
 
 <style lang="scss" scoped>
-.el-menu-vertical-demo {
-    color: white;
-    height: 100vh;
+.container {
+    position: fixed;
+    padding: 20px 20px;
+
+
+    .el-menu-vertical-demo {
+        border-radius: 6px;
+        height: 100%;
+    }
 }
 </style>

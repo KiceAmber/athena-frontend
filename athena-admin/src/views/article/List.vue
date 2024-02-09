@@ -1,31 +1,20 @@
 <script setup lang="ts">
 const tableData = [
     {
-        tag_id: "1",
-        tag_name: "Golang",
-        is_alive: "启用"
+        title: "博弈论",
+        articleTag: ["杂谈", "其他"],
+        articleCategory: "杂谈",
     },
-    {
-        tag_id: "2",
-        tag_name: "Rust",
-        is_alive: "启用"
-    },
-    {
-        tag_id: "3",
-        tag_name: "Java",
-        is_alive: "未启用"
-    }
 ]
 </script>
 
 <template>
     <div class="article-list-box">
         <el-table :data="tableData" style="width: 100%">
-            <el-table-column prop="tag_id" label="标签ID" width="auto" />
-            <el-table-column prop="tag_name" label="标签名称" width="auto" />
-            <el-table-column prop="is_alive" label="是否启用" width="auto" />
+            <el-table-column prop="title" label="文章标题" width="auto"/>
+            <el-table-column prop="articleTag" label="文章标签" width="auto"/>
+            <el-table-column prop="articleCategory" label="文章分类" width="auto"/>
         </el-table>
-
     </div>
 </template>
 
@@ -35,5 +24,6 @@ const tableData = [
     height: auto;
     border-radius: 4px;
     border: rgba(28, 26, 26, 0.1) solid 1px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 </style>

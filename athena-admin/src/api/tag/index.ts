@@ -25,7 +25,6 @@ export const reqDeleteTag = (tagId: number) => {
 
 // 更新 tag 标签
 export const reqUpdateTag = (tag: TagItem) => {
-    console.log("tag =>", tag);
     return request.post(API.UPDATE_TAG_URL, JSON.stringify({
         id: tag.id,
         name: tag.name,
