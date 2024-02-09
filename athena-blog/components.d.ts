@@ -7,7 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Blog_banner: typeof import('./src/components/blog_banner/index.vue')['default']
+    Blog_blank: typeof import('./src/components/blog_blank/index.vue')['default']
     Blog_bottom: typeof import('./src/components/blog_bottom/index.vue')['default']
+    Blog_content: typeof import('./src/components/blog_blank/index.vue')['default']
     Blog_top: typeof import('./src/components/blog_top/index.vue')['default']
     Bottom: typeof import('./src/components/bottom/index.vue')['default']
     ElButtion: typeof import('element-plus/es')['ElButtion']

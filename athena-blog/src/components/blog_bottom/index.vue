@@ -3,11 +3,15 @@
 </script>
 
 <template>
-    <div>
-
+    <div class="blog-bottom">
+        <span>联系博主：xxxxx@gmail.com</span>
     </div>
 </template>
 
 <style lang="scss" scoped>
-
+.blog-bottom {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+}
 </style>
