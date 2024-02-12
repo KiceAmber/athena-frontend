@@ -2,9 +2,8 @@
 
 <template>
 	<div>
-		<router-view />
+		<h1>Category</h1>
 	</div>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style></style>

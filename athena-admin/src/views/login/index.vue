@@ -2,9 +2,8 @@
 
 <template>
 	<div>
-		<router-view />
+		<h1>LoginPage</h1>
 	</div>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

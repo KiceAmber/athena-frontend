@@ -7,8 +7,15 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Admin_content: typeof import('./src/components/admin_content/index.vue')['default']
+    Admin_menu: typeof import('./src/components/admin_menu/index.vue')['default']
+    Admin_nav: typeof import('./src/components/admin_nav/index.vue')['default']
+    Admin_side: typeof import('./src/components/admin_menu/index.vue')['default']
+    Admin_top: typeof import('./src/components/admin_nav/index.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
+    ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
+    ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButtion: typeof import('element-plus/es')['ElButtion']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -26,13 +33,17 @@ declare module 'vue' {
     ElOption: typeof import('element-plus/es')['ElOption']
     ElPageHeader: typeof import('element-plus/es')['ElPageHeader']
     ElSelect: typeof import('element-plus/es')['ElSelect']
+    ElSelection: typeof import('element-plus/es')['ElSelection']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Sidebar: typeof import('./src/layout/components/Sidebar.vue')['default']
-    Test: typeof import('./src/layout/components/Test.vue')['default']
-    Topbar: typeof import('./src/layout/components/Topbar.vue')['default']
+    Sidebar: typeof import('./src/components/admin_menu/index.vue')['default']
+    TagsView: typeof import('./src/components/TagsView.vue')['default']
+    Test: typeof import('./src/components/Test.vue')['default']
+    Topbar: typeof import('./src/components/admin_nav/index.vue')['default']
   }
 }
