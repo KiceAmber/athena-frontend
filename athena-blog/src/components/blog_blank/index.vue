@@ -7,7 +7,7 @@ let marginTop = ref(100);
 
 // 滚动条移动时，`blog-blank` 元素随之滚动
 // 这里的思路是：div 滚动的距离最大为 100
-// 当滚动条的 scrollY 位置处于 0～100 之间时，就取反，因为 div 元素要向上动
+// 当滚动条的 scrollY 位置处于 0～100 之间时，该值就取反赋值给 div 元素的移动，因为 div 元素要向上动，所以需要为负数
 // 而且这里因为设置了阴影，最后 window.scrollY == 0 时，为了防止阴影的效果，直接将 marginTop.value 的值设置为 20
 // 这样就不会当滚动到最顶端时，banner 的下部分出现阴影
 const handleScroll = () => {
@@ -16,6 +16,9 @@ const handleScroll = () => {
     }
     if (window.scrollY == 0) {
         marginTop.value = 20;
+    }
+    if (window.scrollY >= 100) {
+        marginTop.value = -100;
     }
 }
 
@@ -31,9 +34,8 @@ onBeforeUnmount(() => {
 
 <template>
     <div class="blog-blank" ref="scrollDiv" :style="{marginTop: `${marginTop}px`}">
-        <!--    <div class="blog-blank" ref="scrollDiv">-->
         <div class="content">
-            <center><h1>这是文章列表</h1></center>
+            <router-view/>
         </div>
     </div>
 </template>
@@ -44,7 +46,7 @@ onBeforeUnmount(() => {
     justify-content: center;
 
     .content {
-        width: 1300px;
+        width: 65%;
         min-height: 300px;
         border-radius: 6px;
         background-color: white;

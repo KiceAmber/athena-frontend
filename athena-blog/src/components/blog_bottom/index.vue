@@ -4,7 +4,7 @@
 
 <template>
     <div class="blog-bottom">
-        <span>联系博主：xxxxx@gmail.com</span>
+        <span>kiceamber@gmail.com</span>
     </div>
 </template>
 

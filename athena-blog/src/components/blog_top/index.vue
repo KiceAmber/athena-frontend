@@ -1,4 +1,18 @@
 <script lang="ts" setup>
+import {ref} from "vue";
+import {useRouter} from "vue-router";
+
+// 显示对话框
+const dialogVisible = ref(false);
+const showSearch = () => {
+    dialogVisible.value = true;
+}
+
+// 路由跳转
+const router = useRouter();
+const navigateTo = (path: string) => {
+    router.push(path);
+}
 </script>
 
 <template>
@@ -10,7 +24,15 @@
             </div>
             <div class="menu">
                 <ul>
-                    <li>
+                    <li @click="showSearch">
+                        <svg t="1707526222116" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                             xmlns="http://www.w3.org/2000/svg" p-id="1469" width="16" height="16">
+                            <path
+                                d="M995.436384 872.917663l-208.548269-208.616009a89.416538 89.416538 0 0 0-27.25398-18.086527 410.954796 410.954796 0 0 0 68.981697-227.989592c0-228.125072-184.884498-412.98699-413.00957-412.98699C187.503771 5.238545 2.619272 190.123043 2.619272 418.225535c0 228.102492 184.884498 412.98699 412.98699 412.98699 84.358633 0 162.643264-25.605645 228.057332-68.981698 4.245028 9.822271 10.002911 19.192944 17.996208 27.20882l208.638588 208.593429a88.468181 88.468181 0 0 0 125.137994 0 88.423021 88.423021 0 0 0 0-125.115413z m-579.830122-159.707872c-162.936803 0-294.984256-132.047453-294.984255-294.961676 0-162.936803 132.047453-294.984256 294.984255-294.984256 162.959383 0 294.984256 132.047453 294.984256 294.984256 0 162.914223-132.024873 294.961676-294.984256 294.961676z"
+                                fill="#ffffff" p-id="1470"></path>
+                        </svg>
+                    </li>
+                    <li @click="navigateTo('/home')">
                         <svg t="1707478628297" class="icon" viewBox="0 0 1024 1024" version="1.1"
                              xmlns="http://www.w3.org/2000/svg" p-id="14649" width="16" height="16">
                             <path
@@ -19,7 +41,7 @@
                         </svg>
                         <span>首页</span>
                     </li>
-                    <li>
+                    <li @click="navigateTo('/archive')">
                         <svg t="1707478584255" class="icon" viewBox="0 0 1024 1024" version="1.1"
                              xmlns="http://www.w3.org/2000/svg" p-id="12377" width="16" height="16">
                             <path
@@ -31,7 +53,19 @@
                         </svg>
                         <span>归档</span>
                     </li>
-                    <li>
+                    <li @click="navigateTo('/tag')">
+                        <svg t="1707530632408" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                             xmlns="http://www.w3.org/2000/svg" p-id="2648" width="16" height="16">
+                            <path
+                                d="M920.528912 444.49616l-340.111125-340.114737a135.932464 135.932464 0 0 0-96.155899-39.758503L200.418112 64.662657h-0.018063C125.275769 64.662657 64.301413 125.40943 64.301413 200.548159v283.673992a136.091412 136.091412 0 0 0 39.881326 96.199248l340.230335 340.241173a136.022775 136.022775 0 0 0 192.369598 0l283.74624-283.76069c53.128139-53.131752 53.128139-139.277583 0-192.405722z m-45.209673 147.192436l-283.746241 283.760691a72.064544 72.064544 0 0 1-101.924964 0l-340.212273-340.241173A72.187367 72.187367 0 0 1 128.241582 484.218538V200.548159A72.021195 72.021195 0 0 1 200.396437 128.602826l283.843776-0.039737a71.887535 71.887535 0 0 1 50.935389 21.053294l340.114737 340.1039a72.104281 72.104281 0 0 1 0.0289 101.968313z"
+                                fill="#ffffff" p-id="2649"></path>
+                            <path
+                                d="M384.002258 255.999097c-70.69543 0-128.003161 57.307731-128.003161 128.003161S313.306828 511.998194 384.002258 511.998194s127.999548-57.307731 127.999548-127.999549S454.690463 255.999097 384.002258 255.999097z m45.296371 173.29592a64.059379 64.059379 0 1 1 18.759396-45.292759 63.640337 63.640337 0 0 1-18.763008 45.292759z"
+                                fill="#ffffff" p-id="2650"></path>
+                        </svg>
+                        <span>标签</span>
+                    </li>
+                    <li @click="navigateTo('/category')">
                         <svg t="1707478601113" class="icon" viewBox="0 0 1024 1024" version="1.1"
                              xmlns="http://www.w3.org/2000/svg" p-id="13552" width="16" height="16">
                             <path
@@ -40,7 +74,7 @@
                         </svg>
                         <span>分类</span>
                     </li>
-                    <li>
+                    <li @click="navigateTo('/about')">
                         <svg t="1707478481572" class="icon" viewBox="0 0 1024 1024" version="1.1"
                              xmlns="http://www.w3.org/2000/svg" p-id="10126" width="16" height="16">
                             <path
@@ -52,6 +86,9 @@
                 </ul>
             </div>
         </div>
+        <el-dialog v-model="dialogVisible" width="800" title="Search" center close-on-press-escape>
+            <input type="text" placeholder="请输入关键字" autofocus>
+        </el-dialog>
     </div>
 </template>
 
@@ -102,8 +139,7 @@
                     margin-right: 20px;
 
                     svg {
-                        color: white;
-                        vertical-align: middle;
+                        vertical-align: middle; // 让图标和文字对齐
                     }
 
                     span {
@@ -115,6 +151,23 @@
                     }
                 }
             }
+        }
+    }
+
+    :deep(.el-dialog__title) {
+        font-size: 25px;
+    }
+
+    input {
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid #e2e2e2;
+        outline: none;
+        padding-bottom: 2px;
+        transition: border-bottom 0.3s linear 0s;
+
+        &:focus {
+            border-bottom: 2px solid blue;
         }
     }
 }

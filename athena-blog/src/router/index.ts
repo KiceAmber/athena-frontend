@@ -1,46 +1,33 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {createRouter, createWebHistory} from "vue-router";
 
 const routes = [
     {
         path: "/",
         redirect: "/home",
     },
-    // {
-    //     path: "/home",
-    //     component: () => import("@/views/home/index.vue"),
-    // },
-    // {
-    //     path: "/article",
-    //     children: [
-    //         {
-    //             path: "list",
-    //             component: () => import("@/views/article/List.vue")
-    //         },
-    //         {
-    //             path: "add",
-    //             component: () => import("@/views/article/EditMarkdown.vue")
-    //         },
-    //     ],
-    // },
-    // {
-    //     path: "/tag",
-    //     children: [
-    //         {
-    //             path: "list",
-    //             component: () => import("@/views/tag/List.vue")
-    //         },
-    //     ],
-    //
-    // }
+    {
+        path: "/home",
+        component: () => import("@/views/home/index.vue"),
+    },
+    {
+        path: "/archive",
+        component: () => import("@/views/archive/index.vue"),
+    },
+    {
+        path: "/tag",
+        component: () => import("@/views/tag/index.vue"),
+    },
+    {
+        path: "/category",
+        component: () => import("@/views/category/index.vue"),
+    },
+    {
+        path: "/about",
+        component: () => import("@/views/about/index.vue"),
+    }
 ]
 
 export default createRouter({
     history: createWebHistory(),
     routes,
-    scrollBehavior() {
-        return {
-            left: 0,
-            top: 0,
-        }
-    }
 })
