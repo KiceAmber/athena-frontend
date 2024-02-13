@@ -13,7 +13,9 @@ export interface TagItem {
 
 // tag 表格的返回数据
 export interface TagListResponseData extends ResponseData {
-    data: TagItem[],
+    data: {
+        tagList: TagItem[],
+    }
 }
 
 // 创建新标签的请求 ts 数据
