@@ -36,9 +36,9 @@ import AdminContent from "@/layout/admin_content/index.vue";
 		content: "";
 		width: 100%;
 		height: 100%;
-		background: url("https://s11.ax1x.com/2024/02/11/pF3zg2j.jpg") center
+		// background: linear-gradient(60deg, rgb(252, 216, 255), rgb(255, 141, 160));
+		background: url("https://s11.ax1x.com/2024/02/13/pF8tI0A.jpg") center
 			no-repeat;
-		filter: blur(5px);
 	}
 }
 </style>

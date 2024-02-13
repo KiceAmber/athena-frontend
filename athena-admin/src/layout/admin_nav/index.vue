@@ -1,18 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue";
-const tabVal = ref(2);
-const tabs = ref([
-	{
-		title: "Tab 1",
-		name: "1",
-		content: "Tab 1 content",
-	},
-	{
-		title: "Tab 2",
-		name: "2",
-		content: "Tab 2 content",
-	},
-]);
+import { ArrowRight } from "@element-plus/icons-vue";
+import { computed } from "vue";
+import { useRouter } from "vue-router";
+
+
+// 过滤掉没有 meta 的路由
+const router = useRouter();
+const routers = computed(() => {
+	return router.currentRoute.value.matched.filter(item => item.meta.title);
+});
 </script>
 <template>
 	<div class="admin-nav">
@@ -35,7 +31,7 @@ const tabs = ref([
 					></path>
 				</svg>
 				<span>导航</span>
-				<svg
+				<!-- <svg
 					t="1707658778639"
 					class="icon"
 					viewBox="0 0 1024 1024"
@@ -50,10 +46,18 @@ const tabs = ref([
 						p-id="47960"
 						fill="#2c2c2c"
 					></path>
-				</svg>
+				</svg> -->
 			</div>
 			<div class="breadcrumb">
-				<el-breadcrumb> hksj </el-breadcrumb>
+				<el-breadcrumb :separator-icon="ArrowRight">
+					<el-breadcrumb-item
+						v-for="item in routers"
+						:key="item.path"
+						:to="{ path: item?.path }"
+					>
+						{{ item?.meta?.title }}
+					</el-breadcrumb-item>
+				</el-breadcrumb>
 			</div>
 		</div>
 	</div>
@@ -64,7 +68,7 @@ const tabs = ref([
 	padding: 20px 20px;
 	.line {
 		display: flex;
-		padding: 0 10px 10px;
+		padding: 0 10px 5px;
 		border-bottom: 3px solid black;
 		.tip {
 			svg {
@@ -76,8 +80,13 @@ const tabs = ref([
 		}
 
 		.breadcrumb {
-			color: black;
-			margin-left: 26px;
+			color: rgb(0, 0, 0);
+			margin-left: 10px;
+
+			:deep(.el-breadcrumb__inner) {
+				color: rgb(96, 96, 96);
+				font-size: 15px;
+			}
 		}
 	}
 }
