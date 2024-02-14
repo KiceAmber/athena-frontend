@@ -1,33 +1,37 @@
 import request from "@/tools/request.ts";
-import {TagItem, TagListResponseData} from "@/api/tag/type.ts";
+import {
+	GetTagListRes,
+	AddTagRes,
+	AddTagReq,
+	DeleteTagReq,
+	UpdateTagReq,
+    DeleteTagRes,
+    UpdateTagRes,
+} from "@/api/tag/type.ts";
 
 enum API {
-    TAG_LIST_URL = "/tag/getTagList",
-    CREATE_TAG_URL = "/tag/createTag",
+    GET_TAG_LIST_URL = "/tag/getTagList",
+    ADD_TAG_URL = "/tag/addTag",
     DELETE_TAG_URL = "/tag/deleteTag",
     UPDATE_TAG_URL = "/tag/updateTag",
 }
 
 // 获取 tag 数据
 export const reqGetTagList = () => {
-    return request.get<any, TagListResponseData>(API.TAG_LIST_URL);
+    return request.get<any, GetTagListRes>(API.GET_TAG_LIST_URL);
 }
 
-// 创建新的 tag 数据
-export const reqCreateTag = (tagName: string) => {
-    return request.post(API.CREATE_TAG_URL, JSON.stringify({name: tagName}))
+// 添加新的 tag 数据
+export const reqAddTag = (addTagReq: AddTagReq) => {
+    return request.post<any, AddTagRes>(API.ADD_TAG_URL, JSON.stringify(addTagReq))
 }
 
 // 删除 tag 标签
-export const reqDeleteTag = (tagId: number) => {
-    return request.delete(API.DELETE_TAG_URL, {data: {id: tagId}})
+export const reqDeleteTag = (deleteTagReq: DeleteTagReq) => {
+    return request.delete<any, DeleteTagRes>(API.DELETE_TAG_URL, {data: deleteTagReq})
 }
 
 // 更新 tag 标签
-export const reqUpdateTag = (tag: TagItem) => {
-    return request.post(API.UPDATE_TAG_URL, JSON.stringify({
-        id: tag.id,
-        name: tag.name,
-        createdAt: tag.createdAt,
-    }))
+export const reqUpdateTag = (updateTagReq: UpdateTagReq) => {
+    return request.post<any, UpdateTagRes>(API.UPDATE_TAG_URL, JSON.stringify(updateTagReq))
 }

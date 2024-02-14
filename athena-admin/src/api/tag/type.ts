@@ -1,43 +1,60 @@
-// 声明标签的类型
+// 响应的基础类型
 export interface ResponseData {
     code: number,
     message: string,
 }
 
 // tag 的 ts 数据
-export interface TagItem {
+export interface Tag {
     id: number,
     name: string,
+    isVisible: number,
     createdAt: string,
 }
 
-// tag 表格的返回数据
-export interface TagListResponseData extends ResponseData {
+// getTagList Request
+// TODO: 这里是即将要做的分页功能
+export interface GetTagListReq {
+    page: number,
+    size: number,
+}
+
+// getTagList Response
+export interface GetTagListRes extends ResponseData {
     data: {
-        tagList: TagItem[],
+        tagList: Tag[],
     }
 }
 
-// 创建新标签的请求 ts 数据
-export interface AddTagData {
+// AddTag Request
+export interface AddTagReq {
     name: string,
+    isVisible: number,
 }
 
-// 创建新标签的返回数据
-export interface AddTagResponseData extends ResponseData {
+// AddTag Response
+export interface AddTagRes extends ResponseData {
+    data: {},
 }
 
-// 删除标签返回的数据
-export interface DeleteTagResponseData extends ResponseData {
+// DeleteTag Request
+export interface DeleteTagReq {
+    id: number,
 }
 
-// 更新标签需要的请求 ts 数据
-export interface UpdateTagData {
+// DeleteTag Response
+export interface DeleteTagRes extends ResponseData {
+    data: {},
+}
+
+// UpdateTag Request
+export interface UpdateTagReq {
     id: number,
     name: string,
-    createdAt: string,
+    isVisible: number,
 }
 
-// 更新标签的返回数据
-export interface UpdateTagResponseData extends ResponseData {
+// UpdateTag Response
+export interface UpdateTagRes extends ResponseData {
+    data: {},
 }
