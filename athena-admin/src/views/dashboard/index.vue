@@ -1,9 +1,21 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import InfoCard from "@/views/dashboard/info_card/index.vue";
+import ArticleCard from "@/views/dashboard/article_card/index.vue";
+</script>
 
 <template>
 	<div class="dashboard-container">
-		<h1>Dashboard Page</h1>	
+		<el-row>
+			<el-col :span="16">
+				<InfoCard />
+				<ArticleCard/>	
+			</el-col>
+			<el-col :span="8"> <el-card> 更新日志 </el-card></el-col>
+		</el-row>
 	</div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.dashboard-container {
+}
+</style>

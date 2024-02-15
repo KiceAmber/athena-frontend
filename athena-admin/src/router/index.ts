@@ -22,12 +22,6 @@ const routes = [
                 meta: { title: "仪表盘", icon: "Odometer" },
             },
             {
-                path: "article",
-                name: "article",
-                component: () => import("@/views/article/index.vue"),
-                meta: { title: "文章管理", icon: "Files" },
-            },
-            {
                 path: "category",
                 name: "category",
                 component: () => import("@/views/category/index.vue"),

@@ -21,11 +21,12 @@ import AdminContent from "@/layout/admin_content/index.vue";
 	display: flex;
 	.right {
 		width: 100%;
-		margin: 50px 60px;
+		margin: 40px 60px;
 		border: 1px solid transparent;
-		background-color: rgba(255, 255, 255, 0.847);
+		background-color: rgba(238, 238, 238, 0.801);
 		border-radius: 5px;
-		box-shadow: 0px 2px 10px rgb(75, 106, 70);
+		box-shadow: 0px 2px 10px rgb(90, 90, 90);
+		backdrop-filter: blur(20px);
 	}
 
 	&::before {
