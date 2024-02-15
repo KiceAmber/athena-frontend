@@ -1,42 +1,59 @@
 <script lang="ts" setup>
 import { reqAddArticle } from "@/api/article";
-import { AddArticleRes } from "@/api/article/type";
+import { AddArticleReq, AddArticleRes } from "@/api/article/type";
 import { reqGetTagList } from "@/api/tag";
-import { TagItem, TagListResponseData } from "@/api/tag/type";
+import { Tag, GetTagListRes } from "@/api/tag/type";
 import { ElMessage } from "element-plus";
 import { MdEditor } from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
-import { ref } from "vue";
+import { Ref, reactive, ref } from "vue";
+import { Plus } from "@element-plus/icons-vue";
 
-const editor = ref("Hello, Editor.");
-const title = ref("");
-const authorId = ref(1);
-
-// 文章选项对话框
-const dialogVisible = ref(false);
+const editor = ref("");
 
 // 获取标签的请求
-const selectedTagList = ref<number[]>(); // 已选中的标签数组，这里使用 number[]，因为后台需要的是 id
-const fetchTagList = ref<TagItem[]>(); // 从后台请求得到的标签数组
-
+const selectedTagList: Ref<number[]> = ref([]); // 已选中的标签数组，这里使用 number[]，因为后台需要的是 id
+const fetchTagList: Ref<Tag[]> = ref([]); // 从后台请求得到的标签数组
 const getTagListData = async () => {
-	let res: TagListResponseData = await reqGetTagList();
+	let res: GetTagListRes = await reqGetTagList();
 	if (res.code == 0) {
 		fetchTagList.value = res.data.tagList;
 	}
 };
 
+// 发布文章选项对话框
+const dialogVisible = ref(false);
+
+// 是否可见选项
+const visibleOptions = [
+	{
+		value: 0,
+		label: "不可见",
+	},
+	{
+		value: 1,
+		label: "可见",
+	},
+];
+
+// const imageUrl: Ref<string> = ref(""); // 上传的图片地址
+
 // 发布文章请求
-const postArticle = async () => {
-	let res: AddArticleRes = await reqAddArticle({
-		title: title.value,
-		content: editor.value,
-		authorId: authorId.value,
-		tagList: selectedTagList.value as number[],
-	});
+const authorId = ref(1);
+const articleData: AddArticleReq = reactive({
+	id: 0,
+	title: "",
+	content: "",
+	description: "",
+	isVisible: 1,
+	authorId: authorId, // 这里暂时默认为固定的用户
+	tagList: selectedTagList,
+});
+const postArticle = async (addArticleReq: AddArticleReq) => {
+	addArticleReq.content = editor.value;
+	let res: AddArticleRes = await reqAddArticle(addArticleReq);
 
 	if (res.code == 0) {
-		console.log(`output-res`, res);
 		dialogVisible.value = false;
 		ElMessage({
 			message: "发布文章成功",
@@ -53,14 +70,14 @@ const postArticle = async () => {
 // 重置内容
 const clearContent = () => {
 	editor.value = "";
-}
+};
 </script>
 
 <template>
 	<div class="editor-container">
 		<div class="title-input">
 			<span> 文章标题 </span>
-			<input type="text" v-model="title" />
+			<input type="text" v-model="articleData.title" />
 		</div>
 
 		<MdEditor v-model="editor"></MdEditor>
@@ -72,10 +89,12 @@ const clearContent = () => {
 			>
 				发布
 			</el-button>
-			<el-button type="danger" size="large" @click="clearContent"> 重置内容 </el-button>
+			<el-button type="danger" size="large" @click="clearContent">
+				重置内容
+			</el-button>
 		</div>
 
-		<el-dialog v-model="dialogVisible" title="发布文章">
+		<el-dialog v-model="dialogVisible" title="发布文章" width="700px">
 			<div class="dialog-content">
 				<div class="category-option">
 					选择分类：
@@ -104,11 +123,42 @@ const clearContent = () => {
 						/>
 					</el-select>
 				</div>
+				<div class="visible-option">
+					文章是否可见：
+					<el-select
+						v-model="articleData.isVisible"
+						style="width: 50%"
+					>
+						<el-option
+							v-for="item in visibleOptions"
+							:key="item.value"
+							:label="item.label"
+							:value="item.value"
+						/>
+					</el-select>
+				</div>
+				<div class="image">
+					上传文章封面：
+					<el-upload drag class="uploader">
+						<!-- <img v-if="imageUrl" :src="imageUrl" alt=""> -->
+						<el-icon class="avatar-uploader-icon"><Plus /></el-icon>
+					</el-upload>
+				</div>
+				<div class="description">
+					文章概述：
+					<el-input
+						type="textarea"
+						autosize
+						class="desc-input"
+						v-model="articleData.description"
+					></el-input>
+					<el-button type="success">自动生成</el-button>
+				</div>
 			</div>
 			<template #footer>
 				<div class="dialog-footer">
 					<el-button @click="dialogVisible = false">取消</el-button>
-					<el-button type="primary" @click="postArticle">
+					<el-button type="primary" @click="postArticle(articleData)">
 						确认发布
 					</el-button>
 				</div>
@@ -155,9 +205,11 @@ const clearContent = () => {
 		.category-option {
 			display: flex;
 			align-items: center;
-			margin: 30px 0;
+			margin: 0 0 20px;
+			white-space: nowrap;
 			ul {
 				display: flex;
+				flex-wrap: wrap;
 
 				li {
 					background-color: #f1c7c791;
@@ -170,6 +222,30 @@ const clearContent = () => {
 						background: rgb(192, 221, 197);
 					}
 				}
+			}
+		}
+
+		.tag-option {
+			margin: 0 0 20px;
+		}
+
+		.visible-option {
+			margin: 0 0 20px;
+		}
+
+		.image {
+			margin: 0 0 20px;
+
+			.uploader {
+				margin: 20px 5px 0;
+				width: 200px;
+			}
+		}
+
+		.description {
+			margin: 0 0 20px;
+			.desc-input {
+				margin: 10px 0;
 			}
 		}
 	}
