@@ -1,141 +1,81 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { Ref, onMounted, ref } from "vue";
+import { reqGetArticleList } from "@/api/home/index.ts";
+import { ArticleItem } from "@/api/home/type";
+
+onMounted(() => {
+	getArticleList();
+});
+
+const articleItemList: Ref<ArticleItem[]> = ref([]);
+
+// 查询文章列表
+const getArticleList = async () => {
+	let res = await reqGetArticleList();
+	articleItemList.value = res.data.articleList;
+};
+</script>
 
 <template>
 	<div class="home">
 		<div class="article-list">
-			<div class="article-item">
+			<div
+				class="article-item"
+				v-for="item in articleItemList"
+				:key="item.id"
+			>
 				<div class="article-image">
 					<img src="/public/beach.jpg" alt="" />
 				</div>
 				<div class="info-txt">
 					<div class="article-title">
-						<a href="">这是文章标题</a>
+						<span>{{ item.title }}</span>
 					</div>
 					<div class="article-description">
-						<a href="">
-							文文章的简要描述信息文章的简要描述信息文章的简要描述信息文章的简要描述信息文章的简要描述信息文章的简要描述信息文章的简要描述信息文章的简要描述信息文章的简要描述信息章的简要描述信息
-						</a>
+						<p>
+							{{ item.description }}
+						</p>
 					</div>
 					<div class="article-metadata">
-						<span style="margin-right: 20px">
-							<svg
-								t="1707545398544"
-								class="icon"
-								viewBox="0 0 1024 1024"
-								version="1.1"
-								xmlns="http://www.w3.org/2000/svg"
-								p-id="5373"
-								width="16"
-								height="16"
-							>
-								<path
-									d="M512.006169 1024c-136.761166 0-265.330233-53.260979-362.04388-149.962289S0 648.754997 0 511.993831s53.260979-265.330233 149.962289-362.031542S375.245003 0 512.006169 0s265.330233 53.248642 362.04388 149.962289S1024.012337 375.232665 1024.012337 511.993831s-53.260979 265.34257-149.962288 362.04388S648.767335 1024 512.006169 1024z m0-960.474223c-247.280473 0-448.468054 201.187581-448.468054 448.468054s201.187581 448.468054 448.468054 448.468054 448.468054-201.175243 448.468054-448.468054S759.286642 63.525777 512.006169 63.525777z"
-									fill="#231815"
-									p-id="5374"
-								></path>
-								<path
-									d="M786.688225 599.82448H512.006169a31.769057 31.769057 0 0 1 0-63.538115h274.682056a31.769057 31.769057 0 0 1 0 63.538115z"
-									fill="#231815"
-									p-id="5375"
-								></path>
-								<path
-									d="M512.006169 598.88683a31.769057 31.769057 0 0 1-31.769058-31.769057V292.435716a31.769057 31.769057 0 0 1 63.538115 0v274.682057A31.769057 31.769057 0 0 1 512.006169 598.88683z"
-									fill="#231815"
-									p-id="5376"
-								></path>
-							</svg>
-							<span>2024-01-02</span>
-						</span>
-						<span style="margin-right: 20px">
-							<svg
-								t="1707545422257"
-								class="icon"
-								viewBox="0 0 1024 1024"
-								version="1.1"
-								xmlns="http://www.w3.org/2000/svg"
-								p-id="6534"
-								width="16"
-								height="16"
-							>
-								<path
-									d="M992 512c0-12-6-24-18-30l-108-60 108-60c12 0 18-12 18-30 0-12-6-24-18-30L530 68c-12-6-24-6-30 0L50 302c-12 6-18 18-18 30s6 24 18 30l108 60-108 60c-12 6-18 18-18 30s6 24 18 30l108 60-108 60c-12 0-18 12-18 30 0 12 6 24 18 30l444 234c6 0 12 6 18 6 6 0 12 0 18-6l444-234c12-6 18-18 18-30s-6-24-18-30l-108-60 108-60c12-6 18-18 18-30zM140 332L512 140 884 332 512 530 140 332z m744 360L512 884 140 692l90-48 264 138c6 0 12 6 18 6 6 0 12 0 18-6l264-138 90 48z m-372 18L140 512l90-48 264 138c6 0 12 6 18 6 6 0 12 0 18-6l264-138 90 48L512 710z"
-									p-id="6535"
-								></path>
-							</svg>
-							<a href="">文章分类</a>
-						</span>
-						<span>
-							<el-tag type="success">#标签1</el-tag>
-							<el-tag type="info">#标签2</el-tag>
-						</span>
-					</div>
-				</div>
-			</div>
-			<div class="article-item">
-				<div class="article-image">
-					<img src="/public/article-image.jpg" alt="" />
-				</div>
-				<div class="info-txt">
-					<div class="article-title">
-						<a href="">这是文章标题</a>
-					</div>
-					<div class="article-description">
-						<a href="">
-							文文章的简要描述信息文章的简要描述信息文章的简要描述信息文章的简要描述信息文章的简要描述信息文章的简要描述信息文章的简要描述信息文章的简要描述信息文章的简要描述信息章的简要描述信息
-						</a>
-					</div>
-					<div class="article-metadata">
-						<span style="margin-right: 20px">
-							<svg
-								t="1707545398544"
-								class="icon"
-								viewBox="0 0 1024 1024"
-								version="1.1"
-								xmlns="http://www.w3.org/2000/svg"
-								p-id="5373"
-								width="16"
-								height="16"
-							>
-								<path
-									d="M512.006169 1024c-136.761166 0-265.330233-53.260979-362.04388-149.962289S0 648.754997 0 511.993831s53.260979-265.330233 149.962289-362.031542S375.245003 0 512.006169 0s265.330233 53.248642 362.04388 149.962289S1024.012337 375.232665 1024.012337 511.993831s-53.260979 265.34257-149.962288 362.04388S648.767335 1024 512.006169 1024z m0-960.474223c-247.280473 0-448.468054 201.187581-448.468054 448.468054s201.187581 448.468054 448.468054 448.468054 448.468054-201.175243 448.468054-448.468054S759.286642 63.525777 512.006169 63.525777z"
-									fill="#231815"
-									p-id="5374"
-								></path>
-								<path
-									d="M786.688225 599.82448H512.006169a31.769057 31.769057 0 0 1 0-63.538115h274.682056a31.769057 31.769057 0 0 1 0 63.538115z"
-									fill="#231815"
-									p-id="5375"
-								></path>
-								<path
-									d="M512.006169 598.88683a31.769057 31.769057 0 0 1-31.769058-31.769057V292.435716a31.769057 31.769057 0 0 1 63.538115 0v274.682057A31.769057 31.769057 0 0 1 512.006169 598.88683z"
-									fill="#231815"
-									p-id="5376"
-								></path>
-							</svg>
-							<span>2024-01-02</span>
-						</span>
-						<span style="margin-right: 20px">
-							<svg
-								t="1707545422257"
-								class="icon"
-								viewBox="0 0 1024 1024"
-								version="1.1"
-								xmlns="http://www.w3.org/2000/svg"
-								p-id="6534"
-								width="16"
-								height="16"
-							>
-								<path
-									d="M992 512c0-12-6-24-18-30l-108-60 108-60c12 0 18-12 18-30 0-12-6-24-18-30L530 68c-12-6-24-6-30 0L50 302c-12 6-18 18-18 30s6 24 18 30l108 60-108 60c-12 6-18 18-18 30s6 24 18 30l108 60-108 60c-12 0-18 12-18 30 0 12 6 24 18 30l444 234c6 0 12 6 18 6 6 0 12 0 18-6l444-234c12-6 18-18 18-30s-6-24-18-30l-108-60 108-60c12-6 18-18 18-30zM140 332L512 140 884 332 512 530 140 332z m744 360L512 884 140 692l90-48 264 138c6 0 12 6 18 6 6 0 12 0 18-6l264-138 90 48z m-372 18L140 512l90-48 264 138c6 0 12 6 18 6 6 0 12 0 18-6l264-138 90 48L512 710z"
-									p-id="6535"
-								></path>
-							</svg>
-							<a href="">文章分类</a>
-						</span>
-						<span>
-							<el-tag type="success">#标签1</el-tag>
-							<el-tag type="info">#标签2</el-tag>
-						</span>
+						<svg
+							t="1708144095391"
+							class="icon"
+							viewBox="0 0 1024 1024"
+							version="1.1"
+							xmlns="http://www.w3.org/2000/svg"
+							p-id="5153"
+							width="16"
+							height="16"
+						>
+							<path
+								d="M1024 512C1024 229.230204 794.769796 0 512 0 229.230204 0 0 229.230204 0 512 0 794.769796 229.230204 1024 512 1024 794.769796 1024 1024 794.769796 1024 512ZM70.62069 512C70.62069 268.232934 268.232934 70.62069 512 70.62069 755.767066 70.62069 953.37931 268.232934 953.37931 512 953.37931 755.767066 755.767066 953.37931 512 953.37931 268.232934 953.37931 70.62069 755.767066 70.62069 512ZM512.015395 476.689655C521.717389 476.689655 529.655172 484.608406 529.655172 494.329432L529.655172 247.187809C529.655172 227.686435 513.846184 211.877464 494.344828 211.877464 474.843471 211.877464 459.034483 227.686435 459.034483 247.187809L459.034483 494.329432C459.034483 523.649148 482.752565 547.310345 512.015395 547.310345L759.157018 547.310345C778.658392 547.310345 794.467363 531.501356 794.467363 512 794.467363 492.498644 778.658392 476.689655 759.157018 476.689655L512.015395 476.689655Z"
+								fill="#2c2c2c"
+								p-id="5154"
+							></path>
+						</svg>
+						<p>{{ item.createdAt }}</p>
+						<svg
+							t="1707545422257"
+							class="icon"
+							viewBox="0 0 1024 1024"
+							version="1.1"
+							xmlns="http://www.w3.org/2000/svg"
+							p-id="6534"
+							width="16"
+							height="16"
+						>
+							<path
+								d="M992 512c0-12-6-24-18-30l-108-60 108-60c12 0 18-12 18-30 0-12-6-24-18-30L530 68c-12-6-24-6-30 0L50 302c-12 6-18 18-18 30s6 24 18 30l108 60-108 60c-12 6-18 18-18 30s6 24 18 30l108 60-108 60c-12 0-18 12-18 30 0 12 6 24 18 30l444 234c6 0 12 6 18 6 6 0 12 0 18-6l444-234c12-6 18-18 18-30s-6-24-18-30l-108-60 108-60c12-6 18-18 18-30zM140 332L512 140 884 332 512 530 140 332z m744 360L512 884 140 692l90-48 264 138c6 0 12 6 18 6 6 0 12 0 18-6l264-138 90 48z m-372 18L140 512l90-48 264 138c6 0 12 6 18 6 6 0 12 0 18-6l264-138 90 48L512 710z"
+								p-id="6535"
+							></path>
+						</svg>
+						<p>文章分类</p>
+						<el-tag
+							type="success"
+							v-for="tagItem in item.tagList"
+							:key="tagItem.id"
+							>#{{ tagItem.name }}</el-tag
+						>
 					</div>
 				</div>
 			</div>
@@ -146,8 +86,6 @@
 <style lang="scss" scoped>
 .home {
 	.article-list {
-		// padding: 40px 240px;
-
 		.article-item {
 			margin: 50px 100px;
 			min-height: 200px;
@@ -156,12 +94,11 @@
 
 			.article-image {
 				width: 30%;
-				height: auto;
-				margin-right: 20px;
-				position: relative;
+				height: 25%;
+				padding-top: 15px;
 				img {
-					width: 360px;
-					height: auto;
+					width: 100%;
+					height: 100%;
 					transition: all 0.3s;
 					border-radius: 6px;
 					box-shadow: 1px 1px 8px black;
@@ -178,34 +115,35 @@
 				padding: 20px 50px;
 				display: flex;
 				flex-direction: column;
-				justify-content: space-around;
+				justify-content: space-between;
 
 				.article-title {
 					font-size: 24px;
 				}
 
 				.article-description {
-					color: #000;
+					color: #818181;
 					font-size: 18px;
+					height: 72px;
+					p {
+						display: -webkit-box;
+						-webkit-box-orient: vertical;
+						-webkit-line-clamp: 4;
+						overflow: hidden;
+					}
 				}
 
 				.article-metadata {
-					font-size: 1em;
+					display: flex;
+					align-items: center;
 					color: #7f7f7f;
 
-					span {
-						svg {
-							vertical-align: middle; // 让图标和文字对齐
-						}
+					svg {
+						margin: 0 4px 0 0;
 					}
-				}
-			}
-			a {
-				text-decoration: none;
-				color: #000000;
-
-				&:hover {
-					color: blue;
+					p {
+						margin: 0 15px 0 0;
+					}
 				}
 			}
 		}
