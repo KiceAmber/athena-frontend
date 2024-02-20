@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Ref, onMounted, ref } from "vue";
 import { reqGetArticleList } from "@/api/home/index.ts";
-import { ArticleItem } from "@/api/home/type";
+import { ArticleItem, getArticleListRes } from "@/api/home/type";
 
 onMounted(() => {
 	getArticleList();
@@ -11,8 +11,23 @@ const articleItemList: Ref<ArticleItem[]> = ref([]);
 
 // 查询文章列表
 const getArticleList = async () => {
-	let res = await reqGetArticleList();
+	let res: getArticleListRes = await reqGetArticleList();
 	articleItemList.value = res.data.articleList;
+};
+
+// 跳转文章详情操作
+const navigateToArticleDetail = (articleId: number) => {
+	console.log(`output-`, articleId);
+};
+
+// 跳转分类页面
+const navigateToCategoryView = () => {
+	console.log(`output category`);
+};
+
+// 跳转标签页面
+const navigateToTagView = () => {
+	console.log(`output tag`);
 };
 </script>
 
@@ -24,14 +39,17 @@ const getArticleList = async () => {
 				v-for="item in articleItemList"
 				:key="item.id"
 			>
-				<div class="article-image">
+				<div class="article-image" @click="navigateToArticleDetail(item.id)">
 					<img src="/public/beach.jpg" alt="" />
 				</div>
 				<div class="info-txt">
-					<div class="article-title">
+					<div class="article-title" @click="navigateToArticleDetail(12)">
 						<span>{{ item.title }}</span>
 					</div>
-					<div class="article-description">
+					<div
+						class="article-description"
+						@click="navigateToArticleDetail(12)"
+					>
 						<p>
 							{{ item.description }}
 						</p>
@@ -69,11 +87,12 @@ const getArticleList = async () => {
 								p-id="6535"
 							></path>
 						</svg>
-						<p>文章分类</p>
+						<p @click="navigateToCategoryView">文章分类</p>
 						<el-tag
 							type="success"
 							v-for="tagItem in item.tagList"
 							:key="tagItem.id"
+							@click="navigateToTagView"
 							>#{{ tagItem.name }}</el-tag
 						>
 					</div>
@@ -108,6 +127,9 @@ const getArticleList = async () => {
 						transform: scale(1.05);
 					}
 				}
+				&:hover {
+					cursor: pointer;
+				}
 			}
 
 			.info-txt {
@@ -119,6 +141,9 @@ const getArticleList = async () => {
 
 				.article-title {
 					font-size: 24px;
+					&:hover {
+						cursor: pointer;
+					}
 				}
 
 				.article-description {
@@ -130,6 +155,9 @@ const getArticleList = async () => {
 						-webkit-box-orient: vertical;
 						-webkit-line-clamp: 4;
 						overflow: hidden;
+					}
+					&:hover {
+						cursor: pointer;
 					}
 				}
 

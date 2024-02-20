@@ -28,6 +28,8 @@ export interface getArticleListReq {}
 
 // GetArticle Res
 export interface getArticleListRes extends ResponseData{
-    articleList:  ArticleItem[],
+	data: {
+    	articleList:  ArticleItem[],
+	}
 }
 

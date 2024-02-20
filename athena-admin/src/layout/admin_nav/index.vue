@@ -1,26 +1,24 @@
 <script setup lang="ts">
-import { ArrowRight } from "@element-plus/icons-vue";
-import { computed } from "vue";
-import { useRouter } from "vue-router";
+// import { useRouter } from "vue-router";
+import useTabsStore from "@/store/modules/tabs.ts";
 
-// 过滤掉没有 meta 的路由
-const router = useRouter();
-const routers = computed(() => {
-	return router.currentRoute.value.matched.filter(item => item.meta.title);
-});
+// 已经打开的标签页列表
+let tabsStore = useTabsStore();
+
 </script>
+
 <template>
 	<div class="admin-nav">
-		<div class="breadcrumb">
-			<el-breadcrumb :separator-icon="ArrowRight">
-				<el-breadcrumb-item
-					v-for="item in routers"
-					:key="item.path"
-					:to="{ path: item?.path }"
-				>
-					{{ item?.meta?.title }}
-				</el-breadcrumb-item>
-			</el-breadcrumb>
+		<div class="nav-tag">
+			<el-tag
+				v-for="item in tabsStore.openedTabs"
+				:key="item"
+				size="large"
+				effect="light"
+				closable
+			>
+				标签
+			</el-tag>
 		</div>
 	</div>
 </template>
@@ -28,14 +26,13 @@ const routers = computed(() => {
 <style lang="scss" scoped>
 .admin-nav {
 	padding: 20px 20px;
-	.breadcrumb {
-		color: rgb(0, 0, 0);
-		margin-left: 10px;
-
-		:deep(.el-breadcrumb__inner) {
-			color: rgb(67, 75, 68);
-			font-size: 15px;
-			font-weight: 900;
+	.nav-tag {
+		.el-tag {
+			color: rgb(0, 0, 0);
+			margin-right: 10px;
+			&:hover {
+				cursor: pointer;
+			}
 		}
 	}
 }
