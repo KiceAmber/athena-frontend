@@ -3,7 +3,7 @@
 <template>
 	<div class="article-card">
         <el-card>
-            文章面板
+            热力表
         </el-card>
     </div>
 </template>

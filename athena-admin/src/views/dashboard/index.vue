@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import InfoCard from "@/views/dashboard/info_card/index.vue";
-import ArticleCard from "@/views/dashboard/article_card/index.vue";
+import HeatTable from "@/views/dashboard/heat_table/index.vue";
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import ArticleCard from "@/views/dashboard/article_card/index.vue";
 		<el-row>
 			<el-col :span="16">
 				<InfoCard />
-				<ArticleCard/>	
+				<HeatTable/>	
 			</el-col>
 			<el-col :span="8"> <el-card> 更新日志 </el-card></el-col>
 		</el-row>
