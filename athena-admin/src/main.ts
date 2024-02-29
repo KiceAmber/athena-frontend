@@ -1,8 +1,9 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import "@/assets/style/reset.scss"
 import App from './App.vue'
 
 import router from "@/router";
+import pinia from "@/store";
 
 // 引入 Element-Plus
 import ElementPlus from "element-plus";
@@ -17,4 +18,5 @@ app.use(ElementPlus, {
     locale: zhCn,
 })
 app.use(router);
+app.use(pinia);
 app.mount('#app');

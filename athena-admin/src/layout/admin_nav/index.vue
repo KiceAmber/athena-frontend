@@ -8,32 +8,34 @@ let tabsStore = useTabsStore();
 </script>
 
 <template>
-	<div class="admin-nav">
-		<div class="nav-tag">
-			<el-tag
-				v-for="item in tabsStore.openedTabs"
-				:key="item"
-				size="large"
-				effect="light"
-				closable
-			>
-				标签
-			</el-tag>
-		</div>
-	</div>
+    <div class="admin-nav">
+        <div class="nav-tag">
+            <el-tag
+                v-for="item in tabsStore.openedTabs"
+                :key="item"
+                size="large"
+                effect="light"
+                closable
+            >
+                {{ item.label }}
+            </el-tag>
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
 .admin-nav {
-	padding: 20px 20px;
-	.nav-tag {
-		.el-tag {
-			color: rgb(0, 0, 0);
-			margin-right: 10px;
-			&:hover {
-				cursor: pointer;
-			}
-		}
-	}
+    padding: 20px 20px;
+
+    .nav-tag {
+        .el-tag {
+            color: rgb(0, 0, 0);
+            margin-right: 10px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
 }
 </style>
