@@ -49,7 +49,21 @@ const routes = [
     },
 ]
 
-export default createRouter({
+const router = createRouter({
     history: createWebHistory(),
     routes,
 })
+
+router.beforeEach((to, _, next) => {
+    if (to.path == "/login") {
+        next();
+    } else {
+        if (!localStorage.getItem("gtoken")) {
+            router.push("/login")
+        } else {
+            next();
+        }
+    }
+})
+
+export default router;
