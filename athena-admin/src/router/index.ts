@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {createRouter, createWebHistory} from "vue-router";
 import Layout from "@/layout/index.vue";
 
 const routes = [
@@ -19,31 +19,31 @@ const routes = [
                 path: "dashboard",
                 name: "dashboard",
                 component: () => import("@/views/dashboard/index.vue"),
-                meta: { title: "仪表盘", icon: "Odometer" },
+                meta: {title: "仪表盘", icon: "Odometer"},
             },
             {
                 path: "category",
                 name: "category",
                 component: () => import("@/views/category/index.vue"),
-                meta: { title: "分类管理", icon: "Wallet" },
+                meta: {title: "分类管理", icon: "Wallet"},
             },
             {
                 path: "tag",
                 name: "tag",
                 component: () => import("@/views/tag/index.vue"),
-                meta: { title: "标签管理", icon: "PriceTag" },
+                meta: {title: "标签管理", icon: "PriceTag"},
             },
             {
                 path: "picture",
                 name: "picture",
                 component: () => import("@/views/picture/index.vue"),
-                meta: { title: "图片管理", icon: "Picture" },
+                meta: {title: "图片管理", icon: "Picture"},
             },
             {
                 path: "edit",
                 name: "edit",
                 component: () => import("@/views/edit_article/index.vue"),
-                meta: { title: "发布文章", icon: "Document" },
+                meta: {title: "发布文章", icon: "Document"},
             },
         ]
     },

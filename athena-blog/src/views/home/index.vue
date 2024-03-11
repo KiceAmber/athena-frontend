@@ -39,11 +39,17 @@ const navigateToTagView = () => {
 				v-for="item in articleItemList"
 				:key="item.id"
 			>
-				<div class="article-image" @click="navigateToArticleDetail(item.id)">
+				<div
+					class="article-image"
+					@click="navigateToArticleDetail(item.id)"
+				>
 					<img src="/public/beach.jpg" alt="" />
 				</div>
 				<div class="info-txt">
-					<div class="article-title" @click="navigateToArticleDetail(12)">
+					<div
+						class="article-title"
+						@click="navigateToArticleDetail(12)"
+					>
 						<span>{{ item.title }}</span>
 					</div>
 					<div

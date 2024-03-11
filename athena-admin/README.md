@@ -1,6 +1,11 @@
 # Athena 博客后台管理系统
 
-## 后台管理组件
+## Feature
 
-- [Markdown文本编辑器 Vditor](https://b3log.org/vditor/)：`pnpm install vditor`
+- [x] 后台管理员登录
+- [x] 查询、添加、删除以及修改分类
+- [x] 查询、添加、删除以及修改标签
+- [ ] 查询、删除、发布以及修改文章
+- [ ] 上传图片文件、查询相册
+
 
